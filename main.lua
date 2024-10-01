@@ -1,3 +1,4 @@
+-- TODO: Implement unique sensitivies for attachments (holo on/off)
 local FOV = 70 -- CONFIGURE THIS!
 local FOV_TOGGLE = false
 local FOV_KEY_ON = "x"
@@ -7,14 +8,14 @@ local FOV_KEY_OFF = "c"
 local AK47_2_SENSITIVITY = 1.00
 local AK47_2_MODIFIER = false -- USE CTRL TO ACTIVATE?
 local AK47_2 = 3 -- MOUSE KEYBIND
-local AK47_2_HOLOSIGHT = true
+local AK47_2_HOLOSIGHT = false
 local AK47_2_SILENCER = false
 
 -- LR300
 local LR300_2_SENSITIVITY = 1.00
 local LR300_2_MODIFIER = true -- USE CTRL TO ACTIVATE?
 local LR300_2 = 3 -- MOUSE KEYBIND
-local LR300_2_HOLOSIGHT = true
+local LR300_2_HOLOSIGHT = false
 local LR300_2_SILENCER = false
 
 -- MP5A4
@@ -28,7 +29,7 @@ local MP5A4_2_SILENCER = false
 local THOMPSON_2_SENSITIVITY = 1.00
 local THOMPSON_2_MODIFIER = false -- USE CTRL TO ACTIVATE?
 local THOMPSON_2 = 4 -- MOUSE KEYBIND
-local THOMPSON_2_HOLOSIGHT = true
+local THOMPSON_2_HOLOSIGHT = false
 local THOMPSON_2_SILENCER = false
 
 -- CUSTOM SMG??
@@ -471,7 +472,7 @@ function OnEvent(event, arg)
 --AK47
   if (event == "MOUSE_BUTTON_PRESSED" and arg == AK47_2 and AK47_2_MODIFIER == true and IsModifierPressed("lctrl")) then
     kickback = not kickback
-    gun = arg
+    gun = arg*2
     if (kickback == false) then
       OutputLogMessage("LCTRL_AK47_2_MACRO-OFF\n")
     else
@@ -481,7 +482,7 @@ function OnEvent(event, arg)
 --LR300
   elseif (event == "MOUSE_BUTTON_PRESSED" and arg == LR300_2 and LR300_2_MODIFIER == true and IsModifierPressed("lctrl")) then
     kickback = not kickback
-    gun = arg
+    gun = arg*2
     if (kickback == false) then
       OutputLogMessage("LCTRL_LR300_2_MACRO-OFF\n")
     else
@@ -491,7 +492,7 @@ function OnEvent(event, arg)
 --MP5A4
   elseif (event == "MOUSE_BUTTON_PRESSED" and arg == MP5A4_2 and MP5A4_2_MODIFIER == true and IsModifierPressed("lctrl")) then
     kickback = not kickback
-    gun = arg
+    gun = arg*2
     if (kickback == false) then
       OutputLogMessage("LCTRL_MP5A4_2_MACRO-OFF\n")
     else
@@ -501,7 +502,7 @@ function OnEvent(event, arg)
 --THOMPSON
   elseif (event == "MOUSE_BUTTON_PRESSED" and arg == THOMPSON_2 and THOMPSON_2_MODIFIER == true and IsModifierPressed("lctrl")) then
     kickback = not kickback
-    gun = arg
+    gun = arg*2
     if (kickback == false) then
       OutputLogMessage("LCTRL_THOMPSON_2_MACRO-OFF\n")
     else
@@ -511,7 +512,7 @@ function OnEvent(event, arg)
 --SMG
   elseif (event == "MOUSE_BUTTON_PRESSED" and arg == SMG_2 and SMG_2_MODIFIER == true and IsModifierPressed("lctrl")) then
     kickback = not kickback
-    gun = arg
+    gun = arg*2
     if (kickback == false) then
       OutputLogMessage("LCTRL_SMG_2_MACRO-OFF\n")
     else
@@ -521,7 +522,7 @@ function OnEvent(event, arg)
 --HMLMG
   elseif (event == "MOUSE_BUTTON_PRESSED" and arg == HMLMG_2 and HMLMG_2_MODIFIER == true and IsModifierPressed("lctrl")) then
     kickback = not kickback
-    gun = arg
+    gun = arg*2
     if (kickback == false) then
       OutputLogMessage("LCTRL_HMLMG_2_MACRO-OFF\n")
     else
@@ -531,7 +532,7 @@ function OnEvent(event, arg)
 --M249
   elseif (event == "MOUSE_BUTTON_PRESSED" and arg == M249_2 and M249_2_MODIFIER == true and IsModifierPressed("lctrl")) then
     kickback = not kickback
-    gun = arg
+    gun = arg*2
     if (kickback == false) then
       OutputLogMessage("LCTRL_M249_2_MACRO-OFF\n")
     else
@@ -629,7 +630,7 @@ end
 
 
 --MOVE_EVENT-----------------------------------------------------
-	if gun == AK47_2 then
+	if gun == AK47_2 or (AK47_2_MODIFIER == true and gun == AK47_2*2) then
 		if kickback then
 			if (IsMouseButtonPressed(3)) then
 				waitfornth(5)
@@ -678,7 +679,7 @@ end
 				end
 			end
 		end
-	elseif gun == LR300_2 then
+	elseif gun == LR300_2 or (LR300_2_MODIFIER == true and gun == LR300_2*2) then
 		if kickback then
 			if (IsMouseButtonPressed(3)) then
 				waitfornth(5)
@@ -727,7 +728,7 @@ end
 				end
 			end
 		end
-	elseif gun == MP5A4_2 then
+	elseif gun == MP5A4_2 or (MP5A4_2_MODIFIER == true and gun == MP5A4_2 * 2) then
 		if kickback then
 			if (IsMouseButtonPressed(3)) then
 				waitfornth(5)
@@ -776,7 +777,7 @@ end
 				end
 			end
 		end
-	elseif gun == SMG_2 then
+	elseif gun == SMG_2 or (SMG_2_MODIFIER == true and gun == SMG_2*2) then
 		if kickback then
 			if (IsMouseButtonPressed(3)) then
 				waitfornth(5)
@@ -825,7 +826,7 @@ end
 				end
 			end
 		end
-	elseif gun == THOMPSON_2 then
+	elseif gun == THOMPSON_2 or (THOMPSON_2_MODIFIER == true and gun == THOMPSON_2*2) then
 		if kickback then
 			if (IsMouseButtonPressed(3)) then
 				waitfornth(5)
@@ -874,7 +875,7 @@ end
 				end
 			end
 		end
-	elseif gun == HMLMG_2 then
+	elseif gun == HMLMG_2 or (HMLMG_2_MODIFIER == true and gun == HMLMG_2*2) then
 		if kickback then
 			if (IsMouseButtonPressed(3)) then
 				waitfornth(5)
@@ -924,7 +925,7 @@ end
 				end
 			end
 		end
-	elseif gun == M249_2 then
+	elseif gun == M249_2 or (M249_2_MODIFIER == true and gun == M249_2*2) then
 		if kickback then
 			if (IsMouseButtonPressed(3)) then
 				waitfornth(5)

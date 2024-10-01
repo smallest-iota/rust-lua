@@ -75,6 +75,8 @@ local FOV_KEY_OFF = "c" -- (SET WITH ' bind c graphics.fov 90 ')
 ## Adjusting sensitivity
 The sensitivity for every gun can be adjusted independently, increasing the sensitivity reduces recoil control, decreasing sensitivity increases recoil control.
 
+Note that modifiers such as attachments, holosights, etc, will require a different sensitivity.
+
 ![Sensitivity](media/Sensitivity.png)
 
 Adjust sensitivity by going to each respective gun and modifying:
